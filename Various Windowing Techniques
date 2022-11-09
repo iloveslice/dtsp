@@ -1,0 +1,26 @@
+% Windows
+clc;
+clear all;
+for n = 0:1:300
+ hd(n+1) = (sin(0.4*pi*(n-150)))/(pi*(n-150));
+end
+hd(151) = 0.4;
+figure(1),plot(hd)
+% window
+M = length(hd);
+for n= 0:1:300
+ w_rect(n+1) = 1; %rectangular window
+ w_hann(n+1)= 0.5 - 0.5*cos((2*pi*n)/(M-1)); % hann window
+ w_ham(n+1)= 0.54 - 0.46*cos((2*pi*n)/(M-1)); % hamming 
+window
+end
+h_rect = hd.*w_rect;
+h_hann = hd.*w_hann;
+h_ham = hd.*w_ham;
+%figure(2), plot(h_rect)
+figure(2), freqz(h_rect,1,M,15000),title('rectangular 
+window')
+figure(3), plot(w_hann),title('hann window')
+figure(4), freqz(h_hann,1,M,15000),title('hann window')
+figure(5), plot(w_ham),title('hamming window')
+figure(6), freqz(h_ham,1,M,15000),title('hamming window')
