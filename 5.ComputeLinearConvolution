@@ -1,0 +1,29 @@
+clc
+clear all
+x1=[1 2 3 4];
+x2=[5 6 7 8 9];
+N1=length(x1);
+N2=length(x2);
+N=N1+N2-1;
+
+x1=[x1 zeros(1,N-N1)];
+x2=[x2 zeros(1,N-N2)];
+
+
+x1
+x2
+
+%%%%%%%%%%%%%%%%%%%%%
+b=x1;
+c=x1';
+
+for n=1:1:N-1
+    b=[b(N) b(1:(N-1))];
+    c=[c b'];
+end
+c;
+y=c*x2'
+
+figure(1),stem(x1)
+figure(2),stem(x2)
+figure(3),stem(y),title('linear convolution')
