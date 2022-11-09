@@ -1,0 +1,30 @@
+% DFT Program
+
+clc
+clear all
+
+x = [19 28 36 44 75 69 77 48]
+N = length(x)
+
+for n = 0:1:(N-1)
+    for k = 0:1:(N-1)
+        W(n+1,k+1) = exp(-j*2*pi*n*k/N);
+    end
+end
+
+W;
+X = W*x'
+
+Xmag = abs(X)
+
+figure(1)
+stem(x)
+xlabel('n -->')
+ylabel('x(n)')
+title('Input Signal')
+
+figure(2)
+stem(Xmag)
+xlabel('k -->')
+ylabel('|x(n)|')
+title('Magnitude Spectrum')
