@@ -1,0 +1,21 @@
+clc
+clear all
+
+
+[x1,Fs] = wavread('song8k.wav');
+x = x1(:,1)';
+
+X = fft(x);
+Xmag = abs(X);
+
+figure(1)
+bar(x)
+xlabel('n --->')
+ylabel('x(n)')
+title('Original Song')
+
+figure(2)
+bar(Xmag)
+xlabel('k --->')
+ylabel('|x(n)|')
+title('Magnitude Spectrum of Song')
