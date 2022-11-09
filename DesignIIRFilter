@@ -1,0 +1,22 @@
+clc
+clear all
+close all
+
+Fs=400; 
+
+delta_p=30; 
+delta_s= 60; 
+
+Fpass=40; 
+Fstop=50; 
+
+fp=Fpass/(Fs/2); 
+fs=Fstop/(Fs/2); 
+
+[ N fc ]= buttord(fp,fs,delta_p, delta_s) 
+
+[B,A] = butter(N,fc,'low'); 
+
+Transfer_Function= tf(B,A) 
+
+freqz(B,A,400, Fs) 
