@@ -1,0 +1,19 @@
+%% Program to identify the noise in the song
+
+clc
+clear all
+[x1,Fs,bits] = wavread('two.wav');
+x = x1(:,1)';
+
+figure(1)
+plot(x)
+
+X = fft(x);
+Xmag = abs(X);
+
+figure(2)
+stem(Xmag)
+
+[xaxis yaxis] = ginput(1)
+
+Noise = Fs*xaxis/length(Xmag)
