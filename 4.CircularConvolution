@@ -1,0 +1,29 @@
+clc
+clear all
+x1=[1 2 3 49 8 7 6 5 4 3];
+x2=[5 6 6 7 8 9 8 98 7 6 5 4 3 2];
+N1=length(x1);
+N2=length(x2);
+if N1<N2
+    x1=[x1 zeros(1,N2-N1)];
+    N1=N2;
+else
+    x2=[x2 zeros(1,N1-N2)];
+    
+end
+x1
+x2
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+b=x1;
+c=x1';
+for n=1:1:N1-1
+    b=[b(N1) b(1:(N1-1))];
+    c=[c b'];
+    end
+c;
+y=c*x2'
+
+figure(1),stem(x1)
+figure(2),stem(x2)
+figure(3),stem(y),title('circular convolution')
