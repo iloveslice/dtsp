@@ -1,0 +1,38 @@
+% Designing FIR LPF
+
+clc
+clear all
+for n = 0:1:300
+    hd(n+1) = sin(0.3175*pi*(n-150))/(pi*(n-150));
+end
+
+hd(151) = 0.3175;
+
+figure(1),stem(hd)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+for n = 0:1:300
+    wr(n+1) = 1;
+    whamm(n+1) = 0.5 - (0.46*cos(2*pi*n/300));
+end
+
+figure(2),plot(wr)
+hold on
+plot(whamm)
+hold off
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+hr = hd .* wr;
+hhamm = hd .* whamm;
+
+figure(3),stem(hr)
+figure(5),stem(hhamm)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure(4)
+freqz(hr,1,301);
+figure(6)
+freqz(hhamm,1,301);
